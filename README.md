@@ -1,2 +1,2 @@
-# AS
-## A html page that fetch google api and view a list of books
+# First API using HTML & JS 
+## The web page fetches data from Google API and displays a list of books.
