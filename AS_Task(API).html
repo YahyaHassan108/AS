@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Google Books API Example</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Publisher</th>
+    <th>Published Date</th>
+  </tr>
+</table>
+
+<script>
+fetch('https://www.googleapis.com/books/v1/volumes?q=1')
+  .then(response => response.json())
+  .then(data => {
+    const table = document.querySelector('table');
+    data.items.forEach(item => {
+      const row = table.insertRow();
+      const titleCell = row.insertCell();
+      titleCell.textContent = item.volumeInfo.title;
+      const authorCell = row.insertCell();
+      authorCell.textContent = item.volumeInfo.authors?.join(', ');
+      const publisherCell = row.insertCell();
+      publisherCell.textContent = item.volumeInfo.publisher;
+      const publishedDateCell = row.insertCell();
+      publishedDateCell.textContent = item.volumeInfo.publishedDate;
+    });
+  })
+  .catch(error => console.error(error));
+</script>
+
+</body>
+</html>
